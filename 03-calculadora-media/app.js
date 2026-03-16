@@ -21,7 +21,7 @@ function calcularMedia(){
         resultado.textContent = 'APROVADO'
         resultado.classList.add('aprovado')
     }else if(calculo >= 5){
-        resultado.textContent = 'Recuperação'
+        resultado.textContent = 'RECUPERAÇÃO'
         resultado.classList.add('media')
     }else if(calculo < 5){
         resultado.textContent = 'REPROVADO'
