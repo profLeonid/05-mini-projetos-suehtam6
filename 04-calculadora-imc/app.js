@@ -2,38 +2,43 @@
 
 function removerClasses(){
     const resultado = document.getElementById('resultado')
-    resultado.classList.remove('abaixo', 'pesoNormal', 'sobrePeso', 'obesidade1', 'obesidade2', 'obesidade3')
+    resultado.classList.remove('abaixo', 'pesoNormal', 'sobrepeso', 'obesidade1', 'obesidade2', 'obesidade3')
 }
 
-function calcularIMC() {
-    const peso = document.getElementById('peso')
-    const altura = document.getElementById('altura')
+function calcularPesoAltura(peso, altura){
+    let alturaMetros = altura / 100
+   return peso / (alturaMetros * alturaMetros)
+}
+
+function resultadoStatus(imc){
+    if(imc <18.5) return 'Abaixo do peso'
+    if(imc <25) return 'Peso Normal'
+    if(imc <30) return 'Sobrepeso'
+    if(imc <35) return 'obesidade grau I'
+    if(imc <=40) return 'obesidade grau II'
+    if(imc > 40) return 'obesidade grau III'
+}
+
+function selecionarCor(imc){
+    if(imc <18.5) return 'abaixo'
+    if(imc <25) return 'pesoNormal'
+    if(imc <30) return 'sobrepeso'
+    if(imc <35) return 'obesidade1'
+    if(imc <=40) return 'obesidade2'
+
+    return 'obesidade3'
+}
+
+function calcularIMC(){
+    const peso = Number(document.getElementById('peso').value)
+    const altura = Number(document.getElementById('altura').value)
     const resultado = document.getElementById('resultado')
 
-    let pesoImc = Number(peso.value)
-    let alturaImc = Number(altura.value)
-    let alturaMetros = alturaImc / 100
-    let calculo = pesoImc / (alturaMetros * alturaMetros)
+    let imc = calcularPesoAltura(peso, altura)
+    let status = resultadoStatus(imc)
+    let cor = selecionarCor(imc)
     removerClasses()
 
-    if (calculo < 18.5) {
-        resultado.textContent = 'Abaixo do peso'
-        resultado.classList.add('abaixo')
-    } else if (calculo < 25) {
-        resultado.textContent = 'Peso Normal'
-        resultado.classList.add('pesoNormal')
-    } else if (calculo < 30) {
-        resultado.textContent = 'Sobrepeso'
-        resultado.classList.add('sobrePeso')
-    } else if (calculo < 35) {
-        resultado.textContent = 'Obesidade grau I'
-        resultado.classList.add('obesidade1')
-    } else if (calculo <= 40) {
-        resultado.textContent = 'Obesidade grau II'
-        resultado.classList.add('obesidade2')
-    } else if (calculo > 40) {
-        resultado.textContent = 'Obesidade grau III'
-        resultado.classList.add('obesidade3')
-    }
-
+    resultado.textContent = `O IMC É ${imc.toFixed(2)} e está ${status}`
+    resultado.classList.add(cor)
 }
