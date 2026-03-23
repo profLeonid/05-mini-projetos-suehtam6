@@ -5,26 +5,22 @@ const select2 = document.getElementById('escolha2')
 const select3 = document.getElementById('escolha3')
 const resultado = document.getElementById('resultado')
 
-
 select1.addEventListener('change', Escolha)
 select2.addEventListener('change', escolha2Changed)
 select3.addEventListener('change', escolha3Changed)
 
 function limparTudo(){
-    select2.innerHTML = ''
-    select3.innerHTML = ''
+    select2.textContent = ''
+    select3.textContent = ''
 }
 
-
 function limparEscolha3(){
-    select3.innerHTML = ''
+    select3.textContent = ''
 }
 
 function removerResultado(){
     resultado.textContent = 'O resultado aparecerá aqui'
 }
-
-
 
 function Escolha(){
     let escolha = select1.value
@@ -38,7 +34,6 @@ function Escolha(){
         classeInvertebrado()
     }
 }
-
 
 function classeVertebrado(){
 
@@ -59,7 +54,6 @@ function classeVertebrado(){
     select2.appendChild(mamifero)
 }
 
-
 function classeInvertebrado(){
 
     let caixaVazia = document.createElement('option')
@@ -79,7 +73,6 @@ function classeInvertebrado(){
     select2.appendChild(anelideo)
 }
 
-
 function escolha2Changed(){
     let valor = select2.value
     removerResultado()
@@ -97,8 +90,6 @@ function escolha2Changed(){
     }
 }
 
-
-// ESCOLHA 3 DAS CLASSES DOS VERTEBRADOS
 function classeAve(){
 
     let caixaVazia = document.createElement('option')
@@ -118,7 +109,6 @@ function classeAve(){
     select3.appendChild(onivoro)
 
 }
-
 
 function classeMamifero(){
 
@@ -140,7 +130,6 @@ function classeMamifero(){
     select3.appendChild(onivoro)
 }
 
-// ESCOLHA 3 DAS CLASSES DOS INVERTEBRADOS
 function classeInseto(){
     let caixaVazia = document.createElement('option')
     caixaVazia.value = ''
@@ -203,4 +192,3 @@ function escolha3Changed(){
         resultado.textContent = 'MINHOCA'
     }
 }
-
